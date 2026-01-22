@@ -2,8 +2,8 @@
 @import "tailwindcss";
 
 a.active hr {
-   display: block;
-   }
+  display: block;
+}
 
 * {
   font-family: "Outfit", serif;
