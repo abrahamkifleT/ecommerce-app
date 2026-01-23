@@ -64,7 +64,6 @@ const Collection = () => {
 
   }
 
-  ``
   useEffect(() => {
     applyFilter()
   }, [category, subCategory, search, showSearch])
