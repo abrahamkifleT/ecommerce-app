@@ -13,24 +13,24 @@ const ShopContextProvider = (props) => {
     const [cartItems, setCartItem] = useState({})
 
     const addToCart = async (itemId, size) => {
-        if(!size){
+        if (!size) {
             toast.error("Please select a size")
             return
         }
 
-       let cartData = structuredClone(cartItems)
+        let cartData = structuredClone(cartItems)
 
-       if(cartData[itemId]){
-        if(cartData[itemId][size]){
-            cartData[itemId][size] += 1
-        }else{
-            cartData[itemId][size] = 1
+        if (cartData[itemId]) {
+            if (cartData[itemId][size]) {
+                cartData[itemId][size] += 1
+            } else {
+                cartData[itemId][size] = 1
+            }
+        } else {
+            cartData[itemId] = {};
+            cartData[itemId][size] = 1;
         }
-       }else{
-        cartData[itemId] = {};
-        cartData[itemId][size] = 1;
-       }
-       setCartItem(cartData)
+        setCartItem(cartData)
     }
 
     useEffect(() => {
@@ -38,25 +38,43 @@ const ShopContextProvider = (props) => {
     }, [cartItems])
 
     const getCartCount = () => {
-       let totalCount = 0;
-       for(const items in cartItems){
-        for(const item in cartItems[items]){
-            try{
-                if(cartItems[items][item] > 0){
-                    totalCount += cartItems[items][item]  
-                }
-            }catch(e){
+        let totalCount = 0;
+        for (const items in cartItems) {
+            for (const item in cartItems[items]) {
+                try {
+                    if (cartItems[items][item] > 0) {
+                        totalCount += cartItems[items][item]
+                    }
+                } catch (e) {
 
+                }
             }
         }
-       }
-       return totalCount
+        return totalCount
     }
 
-    const updateQunatity = async(itemId, size, quantity) => {
-      let cardData = structuredClone(cartItems)
-      cardData[itemId][size] = quantity
-      setCartItem(cardData)
+    const updateQunatity = async (itemId, size, quantity) => {
+        let cardData = structuredClone(cartItems)
+        cardData[itemId][size] = quantity
+        setCartItem(cardData)
+    }
+
+    const getCartAmount = () => {
+        let totalAmount = 0;
+
+        for (const items in cartItems) {
+            let itemInfo = products.find((product) => product._id === items)
+            for (const item in cartItems[items]) {
+                try {
+                    if (cartItems[items][item] > 0) {
+                        totalAmount += itemInfo.price * cartItems[items][item]
+                    }
+                } catch (e) {
+
+                }
+            }
+        }
+        return totalAmount
     }
 
     const value = {
@@ -71,6 +89,7 @@ const ShopContextProvider = (props) => {
         addToCart,
         getCartCount,
         updateQunatity,
+        getCartAmount,
     }
 
     return (
