@@ -6,7 +6,7 @@ import ProductItem from '../components/ProductItem'
 
 const Collection = () => {
 
-  const { products } = useContext(ShopContext)
+  const { products, search, showSearch } = useContext(ShopContext)
   const [showFilter, setShowFilter] = useState(false)
   const [filterProduct, setFilterProduct] = useState([])
   const [category, setCategory] = useState([])
@@ -32,6 +32,10 @@ const Collection = () => {
   const applyFilter = () => {
     let productsCopy = products.slice()
 
+    if (showSearch && search) {
+      productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+    }
+
     if (category.length > 0) {
       productsCopy = productsCopy.filter(item => category.includes(item.category))
     }
@@ -44,26 +48,26 @@ const Collection = () => {
   }
 
   const sortProduct = () => {
-     let fpCopy = filterProduct.slice()
+    let fpCopy = filterProduct.slice()
 
-     switch(sortType){
+    switch (sortType) {
       case "low-high":
-      setFilterProduct(fpCopy.sort((a, b) => a.price - b.price))
-      break;
+        setFilterProduct(fpCopy.sort((a, b) => a.price - b.price))
+        break;
       case "high-low":
-      setFilterProduct(fpCopy.sort((a, b) => b.price - a.price))
-      break;
+        setFilterProduct(fpCopy.sort((a, b) => b.price - a.price))
+        break;
       default:
         applyFilter()
         break;
-     }
-     
+    }
+
   }
 
-``
+  ``
   useEffect(() => {
     applyFilter()
-  }, [category, subCategory])
+  }, [category, subCategory, search, showSearch])
 
   useEffect(() => {
     sortProduct()
@@ -127,7 +131,7 @@ const Collection = () => {
         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
           {
             filterProduct.map((item, index) => (
-              <ProductItem key={index} id={item.id} name={item.name} price={item.price} image={item.image} />
+              <ProductItem key={index} id={item._id} name={item.name} price={item.price} image={item.image} />
             ))
           }
         </div>
