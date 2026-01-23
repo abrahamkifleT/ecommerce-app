@@ -53,6 +53,12 @@ const ShopContextProvider = (props) => {
        return totalCount
     }
 
+    const updateQunatity = async(itemId, size, quantity) => {
+      let cardData = structuredClone(cartItems)
+      cardData[itemId][size] = quantity
+      setCartItem(cardData)
+    }
+
     const value = {
         products,
         currency,
@@ -64,6 +70,7 @@ const ShopContextProvider = (props) => {
         cartItems,
         addToCart,
         getCartCount,
+        updateQunatity,
     }
 
     return (
