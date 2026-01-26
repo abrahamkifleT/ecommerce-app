@@ -88,3 +88,6 @@ docker-compose.override.yml
 *.pid
 *.pid.lock
 dump.rdb
+
+# Frontend folder
+frontend/
