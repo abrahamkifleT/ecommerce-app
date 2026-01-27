@@ -35,6 +35,7 @@ const loginUser = async (req, res) => {
 
 // Route for user registration
 const registerUser = async (req, res) => {
+    console.log(req)
     try {
         const { name, email, password } = req.body
 
