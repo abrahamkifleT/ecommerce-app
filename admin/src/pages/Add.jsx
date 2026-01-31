@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { assets } from '../assets/admin_assets/assets'
 import axios from 'axios'
 import { backendUrl } from '../App'
+import { toast } from 'react-toastify'
 
 
 const Add = ({ token }) => {
@@ -38,10 +39,29 @@ const Add = ({ token }) => {
       image4 && formData.append("image4", image4)
 
       const response = await axios.post(backendUrl + '/api/product/add', formData, { headers: { token } })
+
       console.log(response.data)
 
-    } catch (error) {
+      if(response.data.success){
+        toast.success(response.data.message)
+        setName("")
+        setDescription("")
+        setPrice("")
+        setCategory("Men")
+        setSubCategory("Topwear")
+        setBestseller(false)
+        setSizes([])
+        setImage1(false)
+        setImage2(false)
+        setImage3(false)
+        setImage4(false)
+      }else{
+        toast.error(response.data.message)
+      }
 
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message)
     }
   }
 
@@ -112,23 +132,23 @@ const Add = ({ token }) => {
       <div>
         <p className='mb-2'>Product Size</p>
         <div className='flex gap-3'>
-          <div onClick={() => setSizes(prev => prev.includes("S") ? prev.filter(item => item !== "S") : [...prev, "S"]) }>
+          <div onClick={() => setSizes(prev => prev.includes("S") ? prev.filter(item => item !== "S") : [...prev, "S"])}>
             <p className={`${sizes.includes("S") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer `}>S</p>
           </div>
 
-          <div onClick={() => setSizes(prev => prev.includes("M") ? prev.filter(item => item !== "M") : [...prev, "M"]) }>
+          <div onClick={() => setSizes(prev => prev.includes("M") ? prev.filter(item => item !== "M") : [...prev, "M"])}>
             <p className={`${sizes.includes("M") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer `}>M</p>
           </div>
 
-          <div onClick={() => setSizes(prev => prev.includes("L") ? prev.filter(item => item !== "L") : [...prev, "L"]) }>
+          <div onClick={() => setSizes(prev => prev.includes("L") ? prev.filter(item => item !== "L") : [...prev, "L"])}>
             <p className={`${sizes.includes("L") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer `}>L</p>
           </div>
 
-          <div onClick={() => setSizes(prev => prev.includes("XL") ? prev.filter(item => item !== "XL") : [...prev, "XL"]) }>
+          <div onClick={() => setSizes(prev => prev.includes("XL") ? prev.filter(item => item !== "XL") : [...prev, "XL"])}>
             <p className={`${sizes.includes("XL") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer `}>XL</p>
           </div>
 
-          <div onClick={() => setSizes(prev => prev.includes("XXL") ? prev.filter(item => item !== "XXL") : [...prev, "XXL"]) }>
+          <div onClick={() => setSizes(prev => prev.includes("XXL") ? prev.filter(item => item !== "XXL") : [...prev, "XXL"])}>
             <p className={`${sizes.includes("XXL") ? "bg-pink-100" : "bg-slate-200"} px-3 py-1 cursor-pointer `}>XXL</p>
           </div>
         </div>
