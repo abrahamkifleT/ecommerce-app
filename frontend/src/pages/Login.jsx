@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 
 const Login = () => {
 
-  const [currentState, setCurrentState] = useState('Sign Up')
+  const [currentState, setCurrentState] = useState('Login')
   const { token, setToken, navigate, backendUrl } = useContext(ShopContext)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -46,6 +46,13 @@ const Login = () => {
       toast.error(error.message)
     }
   }
+
+
+  useEffect(() => {
+    if (token) {
+      navigate("/")
+    }
+  }, [token])
 
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'>

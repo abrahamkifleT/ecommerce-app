@@ -13,7 +13,7 @@ const ShopContextProvider = (props) => {
     const [search, setSearch] = useState("")
     const [showSearch, setShowSearch] = useState(false)
     const [cartItems, setCartItem] = useState({})
-    const [products, setProducts] = useState([]) 
+    const [products, setProducts] = useState([])
     const [token, setToken] = useState('')
     const navigate = useNavigate()
 
@@ -99,6 +99,12 @@ const ShopContextProvider = (props) => {
 
     useEffect(() => {
         getProductData()
+    }, [])
+
+    useEffect(() => {
+        if (!token && localStorage.getItem('token')) {
+            setToken(localStorage.getItem('token'))
+        }
     }, [])
 
     const value = {
