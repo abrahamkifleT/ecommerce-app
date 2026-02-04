@@ -36,6 +36,15 @@ const ShopContextProvider = (props) => {
             cartData[itemId][size] = 1;
         }
         setCartItem(cartData)
+
+        if (token) {
+            try {
+                await axios.post(backendUrl + '/api/cart/add', { itemId, size }, { headers: { token } })
+            } catch (error) {
+                console.log(error)
+                toast.error(error.message)
+            }
+        }
     }
 
     useEffect(() => {
@@ -59,9 +68,9 @@ const ShopContextProvider = (props) => {
     }
 
     const updateQunatity = async (itemId, size, quantity) => {
-        let cardData = structuredClone(cartItems)
-        cardData[itemId][size] = quantity
-        setCartItem(cardData)
+        let cartData = structuredClone(cartItems)
+        cartData[itemId][size] = quantity
+        setCartItem(cartData)
     }
 
     const getCartAmount = () => {
