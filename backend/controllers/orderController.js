@@ -1,10 +1,11 @@
 import orderModel from "../models/orderModel.js"
+import userModel from "../models/userModel.js"
 
 // Placeing orders using COD Method
 
 const placeOrder = async (req, res) => {
     try {
-        const {userId, items, amount, address} = req.body
+        const { userId, items, amount, address } = req.body
 
         const order = {
             userId,
@@ -16,14 +17,14 @@ const placeOrder = async (req, res) => {
             date: Date.now(),
         }
 
-       const newOrder = new orderModel(order)
-       await newOrder.save() 
+        const newOrder = new orderModel(order)
+        await newOrder.save()
 
-       await userModel.findByIdAndUpdate(userId, {cartData: {}})
-       res.json({success: true, message: "Order Placed Successfully"})
+        await userModel.findByIdAndUpdate(userId, { cartData: {} })
+        res.json({ success: true, message: "Order Placed Successfully" })
     } catch (error) {
         console.log(error)
-        res.json({success: false, message: error.message})
+        res.json({ success: false, message: error.message })
     }
 }
 
@@ -31,9 +32,9 @@ const placeOrder = async (req, res) => {
 
 const placeOrderStripe = async (req, res) => {
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
 
@@ -41,9 +42,9 @@ const placeOrderStripe = async (req, res) => {
 
 const placeOrderRazorPay = async (req, res) => {
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
 
@@ -51,9 +52,9 @@ const placeOrderRazorPay = async (req, res) => {
 
 const allOrders = async (req, res) => {
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
 
@@ -61,9 +62,9 @@ const allOrders = async (req, res) => {
 
 const userOrders = async (req, res) => {
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
 
@@ -71,11 +72,11 @@ const userOrders = async (req, res) => {
 
 const updateStatus = async (req, res) => {
     try {
-        
+
     } catch (error) {
-        
+
     }
 }
 
 
-export default { placeOrder, placeOrderStripe, placeOrderRazorPay, allOrders, userOrders, updateStatus }
+export { placeOrder, placeOrderStripe, placeOrderRazorPay, allOrders, userOrders, updateStatus }
