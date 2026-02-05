@@ -8,7 +8,7 @@ const Cart = () => {
 
   const { products, currency, cartItems, updateQunatity, navigate } = useContext(ShopContext)
 
-  const [cardData, setCartData] = useState([])
+  const [cartData, setCartData] = useState([])
 
   useEffect(() => {
     if (products.length > 0) {
@@ -36,7 +36,7 @@ const Cart = () => {
 
       <div>
         {
-          cardData.map((item, index) => {
+          cartData.map((item, index) => {
             const productData = products.find((product) => product._id === item._id)
 
             return (
