@@ -47,9 +47,7 @@ const ShopContextProvider = (props) => {
         }
     }
 
-    useEffect(() => {
-        console.log(cartItems)
-    }, [cartItems])
+
 
     const getCartCount = () => {
         let totalCount = 0;
@@ -103,7 +101,6 @@ const ShopContextProvider = (props) => {
     const getProductData = async () => {
         try {
             const response = await axios.get(`${backendUrl}/api/product/list`)
-            console.log(response.data.products)
             if (response.data.success) {
                 setProducts(response.data.products)
             } else {
