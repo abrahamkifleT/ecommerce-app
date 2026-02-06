@@ -16,12 +16,26 @@ const Orders = ({ token }) => {
     try {
       const response = await axios.post(backendUrl + "/api/order/list", {}, { headers: { token } })
 
+
       if (response.data.success) {
         setOrders(response.data.orders)
       } else {
         toast.error(response.data.message)
       }
 
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message)
+    }
+  }
+
+  const statusHandler = async (event, orderId) => {
+    try {
+      const response = await axios.post(backendUrl + "/api/order/status", { orderId, status: event.target.value }, { headers: { token } })
+
+      if (response.data.success) {
+        await fetchAllOrders()
+      }
     } catch (error) {
       console.log(error)
       toast.error(error.message)
@@ -64,12 +78,12 @@ const Orders = ({ token }) => {
               <p>Date: {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <p className='text-sm sm:text-[15px]'>Amount:{currency} {order.amount}</p>
-            <select className='p-2 font-bold'>
-              <option value="Order Placed">Pending</option>
+            <select onChange={(e) => statusHandler(e, order._id)} value={order.status} className='p-2 font-bold'>
+              <option value="Order Placed">Order Placed</option>
               <option value="Packing">Processing</option>
               <option value="Shipped">Shipped</option>
-              <option value="Out for Delivery">Delivered</option>
-              <option value="Delivered  ">Cancelled</option>
+              <option value="Out for Delivery">Out for Delivery</option>
+              <option value="Delivered">Delivered</option>
             </select>
           </div>
         ))}
