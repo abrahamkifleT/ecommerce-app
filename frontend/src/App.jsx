@@ -8,6 +8,7 @@ import PlaceOrder from './pages/PlaceOrder'
 import Orders from './pages/Orders'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Verify from './pages/Verify'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import SearchBar from './components/SearchBar'
@@ -29,6 +30,7 @@ const App = () => {
          <Route path="/login" element={<Login/>}/>
          <Route path="/place-order" element={<PlaceOrder/>}/>
          <Route path="/orders" element={<Orders/>}/>
+         <Route path="/verify" element={<Verify/>}/>
       </Routes>
       <Footer />
     </div>
