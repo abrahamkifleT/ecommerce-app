@@ -78,8 +78,8 @@ const placeOrderStripe = async (req, res) => {
         })
 
         const session = await stripe.checkout.sessions.create({
-            success_url: `${origin}/verify?scccess=true&orderId=${newOrder._id}`,
-            cancel_url: `${origin}/verify?scccess=false&orderId=${newOrder._id}`,
+            success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
+            cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
             payment_method_types: ['card'],
             line_items,
             mode: 'payment'
@@ -114,15 +114,7 @@ const verifyStripe = async (req, res) => {
 }
 
 
-// Placeing orders using RazorPay method
 
-const placeOrderRazorPay = async (req, res) => {
-    try {
-
-    } catch (error) {
-
-    }
-}
 
 // All Orders data for Admin Panel
 

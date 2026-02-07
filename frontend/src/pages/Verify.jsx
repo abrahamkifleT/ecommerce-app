@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 const Verify = () => {
 
-    const { navigate, token, setCartItems, backendUrl } = useContext(ShopContext)
+    const { navigate, token, setCartItem, backendUrl } = useContext(ShopContext)
     const [searchParams, setSearchParams] = useSearchParams()
 
     const success = searchParams.get("success")
@@ -23,7 +23,7 @@ const Verify = () => {
 
             console.log(response.data.success)
             if (response.data.success) {
-                setCartItems({})
+                setCartItem({})
                 navigate("/orders")
             } else {
                 navigate("/cart")
