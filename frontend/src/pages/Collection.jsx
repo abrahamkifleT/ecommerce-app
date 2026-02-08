@@ -153,7 +153,7 @@ const Collection = () => {
 
       {/* Right Side */}
       <div className='flex-1'>
-        <div className='flex justify-between text-base sm:text-2xl mb-4'>
+        <div className='flex justify-between items-center text-base sm:text-2xl mb-4'>
           <Title text1={"ALL"} text2={"COLLECTION"} />
           {/* Product Sort */}
           <select
