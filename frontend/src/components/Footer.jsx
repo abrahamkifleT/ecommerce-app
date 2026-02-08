@@ -4,35 +4,35 @@ const Footer = () => {
   return (
     <div>
       <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
-        <div >
-          <img src={assets.logo} className='mb-5 w-32' alt="" />
-          <p className='w-full md:w-2/3 text-gray-600'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos doloremque mollitia, vel animi maxime dicta aliquam repudiandae perferendis repellat et?
+        <div>
+          <img src={assets.logo} className='mb-5 w-32' alt="Lumina Logo" />
+          <p className='w-full md:w-2/3 text-gray-600 leading-relaxed'>
+            Lumina is your destination for premium fashion that blends timeless elegance with modern comfort. We curate collections that empower you to express your unique style with confidence.
           </p>
         </div>
 
         <div>
           <p className='text-xl font-medium mb-5'>COMPANY</p>
-          <ul className='flex flex-col gap-1 text-gray-600'>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Delivery</li>
-            <li>Privacy Policy</li>
+          <ul className='flex flex-col gap-1 text-gray-600 cursor-pointer'>
+            <li className='hover:text-gray-800 transition-colors'>Home</li>
+            <li className='hover:text-gray-800 transition-colors'>About Us</li>
+            <li className='hover:text-gray-800 transition-colors'>Delivery</li>
+            <li className='hover:text-gray-800 transition-colors'>Privacy Policy</li>
           </ul>
         </div>
 
         <div>
           <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
           <ul className='flex flex-col gap-1 text-gray-600'>
-            <li>+91 1234567890</li>
-            <li>contact@foreveryou.com</li>
+            <li>+1 (555) 123-4567</li>
+            <li>support@lumina.com</li>
           </ul>
         </div>
       </div>
 
       <div>
-        <hr />
-        <p className='py-5 text-sm text-center text-gray-600'>Copyright 2026 Forever.com - All rights reserved.</p>
+        <hr className='border-gray-200' />
+        <p className='py-5 text-sm text-center text-gray-600'>Copyright 2026 Lumina.com - All rights reserved.</p>
       </div>
     </div>
   )
