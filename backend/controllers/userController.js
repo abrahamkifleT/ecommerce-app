@@ -74,20 +74,32 @@ const registerUser = async (req, res) => {
 
 // Route for Admin Login
 const adminLogin = async (req, res) => {
-   try{
-const {email, password} = req.body
+    try {
+        const { email, password } = req.body
 
-if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
-    const token = jwt.sign(email + password, process.env.JWT_SECRET)
-    res.json({success: true, token})
-}else{
-    res.json({success: false, message: "Invalid Credentials"})
+        if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
+            const token = jwt.sign(email + password, process.env.JWT_SECRET)
+            res.json({ success: true, token })
+        } else {
+            res.json({ success: false, message: "Invalid Credentials" })
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
 }
 
-   }catch(error){
-     console.log(error)
-     res.json({success: false, message: error.message})
-   }
+// Route for User Profile Data
+const getUserProfile = async (req, res) => {
+    try {
+        const { userId } = req.body
+        const user = await userModel.findById(userId)
+        res.json({ success: true, userData: { name: user.name, email: user.email } })
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
 }
 
-export { loginUser, registerUser, adminLogin }
+export { loginUser, registerUser, adminLogin, getUserProfile }

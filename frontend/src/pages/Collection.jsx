@@ -73,41 +73,80 @@ const Collection = () => {
 
 
   return (
-    <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
+    <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 '>
 
       {/* Filter Options */}
       <div className='min-w-60'>
-        <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS <img src={assets.dropdown_icon} className={`h-2 sm:hidden ${showFilter ? 'rotate-90' : ''}`} alt="" /></p>
-        {/* Categroy Filter */}
-        <div className={`border border-gray-300 pl-5 py-3 mt-6 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>CATEGORY</p>
-          <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={"Men"} onChange={toggleCategory} />Men
-            </p>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={"Women"} onChange={toggleCategory} />Women
-            </p>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={"Kids"} onChange={toggleCategory} />Kids
-            </p>
+        <p onClick={() => setShowFilter(!showFilter)} className='my-2 text-lg font-semibold flex items-center cursor-pointer gap-2 text-gray-800 hover:text-gray-600 transition-colors'>
+          FILTERS
+          <img src={assets.dropdown_icon} className={`h-3 sm:hidden transition-transform ${showFilter ? 'rotate-90' : ''}`} alt="" />
+        </p>
+
+        {/* Category Filter */}
+        <div className={`border border-gray-200 rounded-lg px-5 py-4 mt-6 bg-white shadow-sm ${showFilter ? '' : 'hidden'} sm:block`}>
+          <p className='mb-4 text-sm font-semibold text-gray-800 tracking-wide'>CATEGORY</p>
+          <div className='flex flex-col gap-3 text-sm text-gray-700'>
+            <label className='flex items-center gap-3 cursor-pointer hover:text-gray-900 transition-colors group'>
+              <input
+                className='w-4 h-4 accent-gray-800 cursor-pointer'
+                type="checkbox"
+                value={"Men"}
+                onChange={toggleCategory}
+              />
+              <span className='group-hover:translate-x-0.5 transition-transform'>Men</span>
+            </label>
+            <label className='flex items-center gap-3 cursor-pointer hover:text-gray-900 transition-colors group'>
+              <input
+                className='w-4 h-4 accent-gray-800 cursor-pointer'
+                type="checkbox"
+                value={"Women"}
+                onChange={toggleCategory}
+              />
+              <span className='group-hover:translate-x-0.5 transition-transform'>Women</span>
+            </label>
+            <label className='flex items-center gap-3 cursor-pointer hover:text-gray-900 transition-colors group'>
+              <input
+                className='w-4 h-4 accent-gray-800 cursor-pointer'
+                type="checkbox"
+                value={"Kids"}
+                onChange={toggleCategory}
+              />
+              <span className='group-hover:translate-x-0.5 transition-transform'>Kids</span>
+            </label>
           </div>
         </div>
 
         {/* SubCategory Filter */}
-
-        <div className={`border border-gray-300 pl-5 py-3 my-5 ${showFilter ? '' : 'hidden'} sm:block`}>
-          <p className='mb-3 text-sm font-medium'>TYPE</p>
-          <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={"Topwear"} onChange={toggleSubCategory} />Topwear
-            </p>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={"Bottomwear"} onChange={toggleSubCategory} />Bottomwear
-            </p>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={"WinterWear"} onChange={toggleSubCategory} />WinterWear
-            </p>
+        <div className={`border border-gray-200 rounded-lg px-5 py-4 my-5 bg-white shadow-sm ${showFilter ? '' : 'hidden'} sm:block`}>
+          <p className='mb-4 text-sm font-semibold text-gray-800 tracking-wide'>TYPE</p>
+          <div className='flex flex-col gap-3 text-sm text-gray-700'>
+            <label className='flex items-center gap-3 cursor-pointer hover:text-gray-900 transition-colors group'>
+              <input
+                className='w-4 h-4 accent-gray-800 cursor-pointer'
+                type="checkbox"
+                value={"Topwear"}
+                onChange={toggleSubCategory}
+              />
+              <span className='group-hover:translate-x-0.5 transition-transform'>Topwear</span>
+            </label>
+            <label className='flex items-center gap-3 cursor-pointer hover:text-gray-900 transition-colors group'>
+              <input
+                className='w-4 h-4 accent-gray-800 cursor-pointer'
+                type="checkbox"
+                value={"Bottomwear"}
+                onChange={toggleSubCategory}
+              />
+              <span className='group-hover:translate-x-0.5 transition-transform'>Bottomwear</span>
+            </label>
+            <label className='flex items-center gap-3 cursor-pointer hover:text-gray-900 transition-colors group'>
+              <input
+                className='w-4 h-4 accent-gray-800 cursor-pointer'
+                type="checkbox"
+                value={"Winterwear"}
+                onChange={toggleSubCategory}
+              />
+              <span className='group-hover:translate-x-0.5 transition-transform'>Winterwear</span>
+            </label>
           </div>
         </div>
       </div>
@@ -117,8 +156,11 @@ const Collection = () => {
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
           <Title text1={"ALL"} text2={"COLLECTION"} />
           {/* Product Sort */}
-          <select onChange={(e) => setSortType(e.target.value)} className='border border-gray-300 text-sm px-2'>
-            <option value="relavent">Sort by: Relavent</option>
+          <select
+            onChange={(e) => setSortType(e.target.value)}
+            className='border-2 border-gray-300 rounded-lg text-sm px-4 py-2 hover:border-gray-400 focus:border-gray-800 focus:outline-none transition-colors cursor-pointer font-medium text-gray-700'
+          >
+            <option value="relavent">Sort by: Relevant</option>
             <option value="low-high">Sort by: Low to High</option>
             <option value="high-low">Sort by: High to Low</option>
           </select>

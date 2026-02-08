@@ -163,4 +163,14 @@ const updateStatus = async (req, res) => {
 }
 
 
+// Placeing orders using Razorpay Method
+const placeOrderRazorPay = async (req, res) => {
+    try {
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+
 export { verifyStripe, placeOrder, placeOrderStripe, placeOrderRazorPay, allOrders, userOrders, updateStatus }
