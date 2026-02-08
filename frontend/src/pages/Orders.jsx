@@ -43,7 +43,7 @@ const Orders = () => {
   }, [token])
 
   return (
-    <div className='border-t pt-16'>
+    <div className='pt-16'>
       <div className='text-2xl'>
         <Title text1={"My"} text2={"Orders"} />
       </div>
@@ -51,7 +51,7 @@ const Orders = () => {
       <div className='flex flex-col gap-4 mt-8'>
         {
           orderData.map((item, index) => (
-            <div key={index} className='p-4 border-t border-b border-gray-200 flex flex-col md:flex-row md:items-center md:justify-between gap-6 hover:bg-gray-50 transition-colors'>
+            <div key={index} className='p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-6 hover:bg-gray-50 transition-colors'>
               <div className='flex items-start gap-6 text-sm'>
                 <img className='w-16 sm:w-24 object-cover rounded shadow-sm' src={item.images[0]} alt={item.name} />
 
